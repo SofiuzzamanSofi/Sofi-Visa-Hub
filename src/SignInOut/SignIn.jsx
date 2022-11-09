@@ -40,7 +40,6 @@ const SignIn = () => {
         // const form = event.target;
         const email = userInfo.email;
         const password = userInfo.password;
-        console.log(email, password);
 
 
         // login function ------------------

@@ -10,9 +10,8 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Headers = () => {
 
-
     const { user, setUser, logout } = useContext(AuthContext);
-    console.log(user)
+
 
 
     // small display slider and profile slider -----------
@@ -42,7 +41,7 @@ const Headers = () => {
 
 
     return (
-        <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-slate-200 ">
+        <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-full md:px-24 lg:px-8 bg-slate-200">
             <div className="relative flex items-center justify-between ">
                 <div className='flex p-1'>
 
@@ -115,7 +114,6 @@ const Headers = () => {
                             </li>
                             <li>
                                 <Link to="" onClick={hndleLogOut} className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white hover:text-red-600">Sign out</ Link>
-
                             </li>
                         </ul>
                     </div>

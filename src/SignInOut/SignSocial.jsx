@@ -9,6 +9,9 @@ const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
+
+
+
 const SignSocial = () => {
 
     const { googleFacebookGithub } = useContext(AuthContext);
@@ -18,6 +21,9 @@ const SignSocial = () => {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
 
+
+
+    // social 3 functio -----------
     const handleGoogle = (provider) => {
         googleFacebookGithub(provider)
             .then((result) => {
@@ -30,7 +36,9 @@ const SignSocial = () => {
                 const email = error.customData.email;
                 toast.error("Create User Failed.");
             });
-    }
+    };
+
+
 
     return (
         <>

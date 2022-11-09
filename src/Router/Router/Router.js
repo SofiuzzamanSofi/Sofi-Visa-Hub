@@ -6,6 +6,8 @@ import SignUp from "../../SignInOut/SignUp";
 
 const { createBrowserRouter } = require("react-router-dom");
 
+
+
 const router = createBrowserRouter([
     {
 
@@ -17,7 +19,5 @@ const router = createBrowserRouter([
     { path: "/signin", element: <SignIn /> },
     { path: "/signup", element: <SignUp /> },
 ])
-
-
 
 export default router;

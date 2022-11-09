@@ -3,7 +3,7 @@ Site Name:-
 
 Website Type- Client-Side
 
-(Live Site Link [Sofi-Visa-Hub](https://sofi-visa-hub.web.app/).)
+Live Site Link:-  [Sofi-Visa-Hub](https://sofi-visa-hub.web.app/)
 
 
 ### `## About this website-`
@@ -15,6 +15,7 @@ Website Type- Client-Side
 
 ### Server Side Link-
 Live site- https://sofi-visa-hub-server.vercel.app/
+
 Github- https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-SofiuzzamanSofi
 
 ### `Components Using This Projects--`
