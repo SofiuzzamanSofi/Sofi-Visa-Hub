@@ -1,5 +1,6 @@
 import React from 'react';
 import GeneralInfo from '../GeneralInfo/GeneralInfo';
+import MySelfAndSite from '../MySelfAndSite/MySelfAndSite';
 import MyselfDetails from '../MyselfDetails/MyselfDetails';
 import Services from '../ServiceRelated/Services/Services';
 import AppsPlayStore from '../UpdatesAndApp/AppsPlayStore';
@@ -14,6 +15,7 @@ const Home = () => {
             <Services />
             <GeneralInfo />
             <MyselfDetails />
+            <MySelfAndSite />
             <Update />
             <AppsPlayStore />
         </div>
