@@ -87,7 +87,7 @@ const ServicesDetails = () => {
                 .then(data => {
                     setStateChange(!stateChange)
                     // console.log(data);
-                    toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
+                    toast.success(`Dear ${user?.displayName} your finback will be listed bellow now. Thank you.`)
                     setCommentText(" ");
                 })
                 .catch(error => console.log(error))
@@ -98,6 +98,24 @@ const ServicesDetails = () => {
     };
 
 
+    console.log(serviceId)
+    // add services function-------------
+    const addServices = () => {
+        fetch(`http://localhost:5000/addservice/${serviceId}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify({ email: user?.email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success(`Dear ${user?.displayName}Successfully add this services.`)
+                setAllcomments("success add");
+            })
+            .catch(error => console.log(error))
+        console.log("add under ");
+    }
 
 
 
@@ -199,6 +217,7 @@ const ServicesDetails = () => {
                             <p className="text-black font-serif pb-4">
                                 Service Charge: <span className='text-rose-600'>$ {service?.ours[0]?.serviceCharge}</span>
                             </p>
+                            <button title='Add Services' onClick={addServices}><Link className='border py-2 px-4 rounded-lg bg-teal-400 text-red-700'>Add Services</Link></button>
 
                         </div>
                     </div>
@@ -264,7 +283,7 @@ const ServicesDetails = () => {
                     }
                 </form>
             </section>
-
+            <Toaster />
         </div>
     );
 };

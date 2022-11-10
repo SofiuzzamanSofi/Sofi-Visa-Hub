@@ -7,7 +7,7 @@ import LoadingPage from '../../Components/LoadingPage/LoadingPage';
 const PrivetRoute = ({ children }) => {
 
     const { user, loading } = useContext(AuthContext);
-    console.log(user);
+
 
 
     const location = useLocation();

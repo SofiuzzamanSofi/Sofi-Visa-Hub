@@ -6,29 +6,19 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const AllComments = ({ comment, children, setStateChange, stateChange }) => {
 
-    console.log(comment);
-
-
 
     const [commentText, setCommentText] = useState(comment?.commentText);
-    console.log(commentText);
+
     const location = useLocation();
     // console.log(location.pathname)
     // if (location.pathname == "/myreviews") {
     //     console.log("phname");
     // }
-    useEffect(() => {
-
-    }, []);
-
-
-
 
 
     // edit comment function--------------
     const handlecommentchange = () => {
         const c = { currentComment: commentText }
-        console.log(c)
         const process = window.confirm(`Hey ${comment?.userInfl[0]?.name}  are you want to update this products`);
         if (!process) {
             return;

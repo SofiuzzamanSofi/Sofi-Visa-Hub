@@ -10,7 +10,7 @@ const MyReviews = () => {
     const [allComments, setAllcomments] = useState([]);
     const [stateChange, setStateChange] = useState(true);
     // console.log(allComments);
-    console.log(stateChange);
+
 
 
 
