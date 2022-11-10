@@ -13,6 +13,7 @@ const ServicesDetails = () => {
     const data = useLoaderData();
     const service = data?.data;
     const serviceId = service._id;
+    const serviceName = service?.name;
     // console.log(service);
     // console.log(service?.details[0]?.details1);
 
@@ -54,7 +55,6 @@ const ServicesDetails = () => {
             const name = user?.displayName;
             const email = user?.email;
             const photoURL = user?.photoURL;
-            const serviceName = service?.name;
             // console.log(name, email, photoURL, serviceId,serviceName)
             const comment = {
                 serviceId,
