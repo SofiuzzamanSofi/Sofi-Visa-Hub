@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 const Service = ({ service }) => {
-    console.log(service);
+    // console.log(service);
     // console.log(service?.details[0]?.details1)
     // console.log(service?.ours[0]?.serviceCharge)
     return (

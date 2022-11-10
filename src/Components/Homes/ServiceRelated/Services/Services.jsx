@@ -6,9 +6,23 @@ import Service from '../Service/Service';
 const Services = () => {
 
 
-    const [services, setServices] = useState();
+    const [services, setServices] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [pageNo, setPageNo] = useState(0);
+    const perPageContentSize = 3;
+
     // console.log(services);
 
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/services?pageNo=${pageNo}&perPageContentSize=${perPageContentSize}`)
+            .then(res => res.json())
+            .then(data => {
+                setPageCount(data.count);
+                // setServices(data.data);
+            })
+            .catch(error => console.log(error));
+    }, [pageNo]);
 
     useEffect(() => {
         fetch("http://localhost:5000/services")
@@ -17,9 +31,11 @@ const Services = () => {
                 // console.log(data);
                 setServices(data.data);
             })
-            .catch(error => console.log(error))
-    }, [])
+            .catch(error => console.log(error));
+    }, []);
 
+    const pages = Math.ceil(pageCount / perPageContentSize);
+    console.log(pages);
 
 
 
@@ -33,10 +49,15 @@ const Services = () => {
 
                 </div>
                 <div className="text-center">
-                    <button>01</button>
+                    <p className='pb-2'>currently selected page: <span className='text-rose-600'>{pageNo ? (pageNo + 1) : " "}</span></p>
+                    {
+                        [...Array(pages)?.keys()]?.map(num => <button key={num} className={`border px-4 py-2 hover:text-yellow-300 hover:border-red-600 ${pageNo === num ? "text-yellow-300 border-red-600" : ""}`} onClick={() => setPageNo(num)}>{num + 1}</button>)
+                    }
+
                 </div>
-                <div className="text-center">
-                    <Link to="" className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                <div className="text-center pt-4">
+
+                    <Link to="" className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800 hover:text-cyan-300">
                         See all articles
                         <svg
                             className="inline-block w-3 ml-2"
