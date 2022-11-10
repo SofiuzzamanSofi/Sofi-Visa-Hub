@@ -56,7 +56,7 @@ const ServicesDetails = () => {
             return;
         }
         if (commentText?.length > 25) {
-            console.log(commentText)
+            // console.log(commentText)
             const name = user?.displayName;
             const email = user?.email;
             const photoURL = user?.photoURL;
@@ -86,9 +86,9 @@ const ServicesDetails = () => {
                 .then(res => res.json())
                 .then(data => {
                     setStateChange(!stateChange)
-                    console.log('under fetch')
-                    console.log(data);
+                    // console.log(data);
                     toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
+                    setCommentText(" ");
                 })
                 .catch(error => console.log(error))
         } else {
@@ -242,11 +242,11 @@ const ServicesDetails = () => {
                             </div>
                         </div>
                         <div className="flex flex-col w-full relative font-serif">
-                            <textarea onChange={(event) => setCommentText(event.target.value)} name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
+                            <textarea onChange={(event) => setCommentText(event.target.value)} value={commentText} name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
                             <button onClick={handleComment} type="button" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400 border bg-cyan-400 w-36 text-center m-auto" >Leave feedback</button>
                             {
                                 loginShow ?
-                                    <button><Link to="/signin" state={{ from: location }} replace className="font-semibold rounded-md border w-32 py-2 text-center m-auto absolute top-36 left-[25%] bg-red-600 ">Sign In</Link></button>
+                                    <button><Link to="/signin" state={{ from: location }} replace className="z-40 w-36 py-4 my-8 font-semibold rounded-md border  text-center m-auto absolute top-[106px] left-[35%] bg-red-600 ">Sign In</Link></button>
                                     :
                                     ""
                             }
