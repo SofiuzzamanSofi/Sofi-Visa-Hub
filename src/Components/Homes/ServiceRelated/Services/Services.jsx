@@ -10,9 +10,8 @@ const Services = () => {
     const [services, setServices] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [pageNo, setPageNo] = useState(0);
-    const perPageContentSize = 3;
+    let perPageContentSize = 3;
     // console.log(pageNo)
-
     // console.log(services);
 
 
@@ -24,17 +23,9 @@ const Services = () => {
                 setServices(data.data);
             })
             .catch(error => console.log(error));
-    }, [pageNo, pageCount]);
+    }, [pageNo, perPageContentSize]);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/services")
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             // console.log(data);
-    //             setServices(data.data);
-    //         })
-    //         .catch(error => console.log(error));
-    // }, []);
+
 
     const pages = Math.ceil(pageCount / perPageContentSize);
 
@@ -42,6 +33,7 @@ const Services = () => {
         // console.log(services.length);
         return <LoadingPage />
     }
+
 
 
     return (
@@ -62,7 +54,7 @@ const Services = () => {
                     </div>
                     <div className="text-center pt-4 ">
 
-                        <Link to="" className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800 hover:text-cyan-300">
+                        <Link to="/services" className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800 hover:text-cyan-300">
                             See all articles
                             <svg
                                 className="inline-block w-3 ml-2"
