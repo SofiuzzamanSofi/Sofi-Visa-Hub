@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { AuthContext } from '../../../../AuthProvider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
 const ServicesDetails = () => {
 
-
+    const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const service = data?.data;
-    console.log(service);
-    console.log(service?.details[0]?.details1);
+    // console.log(service);
+    // console.log(service?.details[0]?.details1);
 
-    const [serviceDetails, setServiceDetails] = useState({});
+    const [commentText, setCommentText] = useState({});
+    const [loginShow, setLoginShow] = useState(false)
+    // console.log(commentText?.length);
+    const location = useLocation();
+
 
 
 
@@ -26,10 +32,35 @@ const ServicesDetails = () => {
     //         .catch(error => console.log(error));
     // }, []);
 
+    const handleComment = (event) => {
+        if (!user) {
+            // toast.info(`To comment or feedback login first pls.`)
+            toast(`To comment or feedback login first pls.`, {
+                icon: '👏',
+            });
+            setLoginShow(true);
+            return;
+        }
+        if (commentText?.length < 25) {
+            return toast.error('Comment Should be at Least 25 characters.')
+        }
+
+        console.log(commentText)
+        const name = user?.displayName;
+        const email = user?.email;
+        const photoURL = user?.photoURL;
+        const _id = service._id;
+        console.log(name, email, photoURL, _id)
+
+        toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
+    }
+
 
     return (
         <div>
 
+
+            {/* -------------Details Section ------------- */}
             <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
                 <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
                     <div className="flex flex-col justify-center">
@@ -128,8 +159,58 @@ const ServicesDetails = () => {
                     </div>
                 </div>
             </div>
+
+
+            {/* -------------------Review Section----------------------------- */}
             <div>
-                comment
+                <div className="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 dark:bg-gray-900 dark:text-gray-100 text-center m-auto">
+                    <div className="flex flex-col items-center w-full">
+                        <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
+                        <div className="flex flex-col items-center py-6 space-y-3">
+                            <span className="text-center">How was your experience?</span>
+                            <div className="flex space-x-3 text-yellow-300">
+                                <button type="button" title="Rate 1 stars" aria-label="Rate 1 stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" title="Rate 2 stars" aria-label="Rate 2 stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" title="Rate 3 stars" aria-label="Rate 3 stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" title="Rate 4 stars" aria-label="Rate 4 stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                                <button type="button" title="Rate 5 stars" aria-label="Rate 5 stars">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-gray-600">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div className="flex flex-col w-full relative">
+                            <textarea onChange={(event) => setCommentText(event.target.value)} name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
+                            <button onClick={handleComment} type="button" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400 border bg-cyan-400 w-36 text-center m-auto" >Leave feedback</button>
+                            {
+                                loginShow ?
+                                    <button><Link to="/signin" state={{ from: location }} replace className="font-semibold rounded-md border w-32 py-2 text-center m-auto absolute top-36 left-[25%] bg-red-600 ">Sign In</Link></button>
+                                    :
+                                    ""
+                            }
+                        </div>
+                    </div>
+                    {/* <div className="flex items-center justify-center">
+                        <a rel="noopener noreferrer" href="#" className="text-sm dark:text-gray-400">Maybe later</a>
+                    </div> */}
+                </div>
             </div>
         </div>
     );
