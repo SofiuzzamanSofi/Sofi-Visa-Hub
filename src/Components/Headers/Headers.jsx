@@ -60,10 +60,19 @@ const Headers = () => {
                         {isMenuOpen && (
                             <div className="absolute top-14 left-0 w-full rounded-lg bg-slate-100 shadow-sm">
                                 <nav className='p-5'>
-                                    <ul className="space-y-4">
+                                    <ul className="">
                                         {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
+                                        {
+                                            user ?
+                                                <>
+                                                    <Link to="/myreviews" title='My Reviews'><li>My Reviews</li></Link>
+                                                    <Link to="/addservice" title='Add service'><li>Add service</li></Link>
+                                                </>
+                                                : " "
+                                        }
                                     </ul>
                                 </nav>
+
 
                             </div>
                         )}
@@ -85,6 +94,14 @@ const Headers = () => {
 
                 <ul className="flex items-center hidden space-x-8 lg:flex">
                     {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
+                    {
+                        user ?
+                            <>
+                                <Link to="/myreviews" title='My Reviews'>My Reviews</Link>
+                                <Link to="/addservice" title='Add service'>Add service</Link>
+                            </>
+                            : " "
+                    }
                 </ul>
 
 

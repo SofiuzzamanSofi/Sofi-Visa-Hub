@@ -1,3 +1,4 @@
+import Blogs from "../../Components/Blogs/Blogs";
 import ErrorRoute from "../../Components/ErrorRoute/ErrorRoute";
 import Home from "../../Components/Homes/Home/Home";
 import ServiceAll from "../../Components/Homes/ServiceRelated/ServiceAll/ServiceAll";
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             { path: "/home", element: <Home /> },
             { path: "/services", element: <ServiceAll /> },
+            { path: "/blogs", element: <Blogs /> },
             { path: "/service/:id", element: <ServicesDetails />, loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`) },
         ]
     },
