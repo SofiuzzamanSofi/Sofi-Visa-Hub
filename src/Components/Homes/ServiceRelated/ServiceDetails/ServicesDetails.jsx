@@ -4,6 +4,8 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import AllComments from '../../AllComments/AllComments';
+
 
 
 
@@ -14,9 +16,13 @@ const ServicesDetails = () => {
     const service = data?.data;
     const serviceId = service._id;
     const serviceName = service?.name;
+    // console.log(allComments)
     // console.log(service);
     // console.log(service?.details[0]?.details1);
 
+
+    const [allComments, setAllcomments] = useState([]);
+    const [stateChange, setStateChange] = useState(true);
     const [commentText, setCommentText] = useState({});
     const [loginShow, setLoginShow] = useState(false)
     // console.log(commentText?.length);
@@ -30,11 +36,10 @@ const ServicesDetails = () => {
         fetch(`http://localhost:5000/service/${serviceId}/comment`)
             .then(res => res.json())
             .then(data => {
-                console.log('under fetch')
-                console.log(data);
+                setAllcomments(data.data);
             })
             .catch(error => console.log(error))
-    }, []);
+    }, [stateChange]);
 
 
 
@@ -80,6 +85,7 @@ const ServicesDetails = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    setStateChange(!stateChange)
                     console.log('under fetch')
                     console.log(data);
                     toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
@@ -246,11 +252,19 @@ const ServicesDetails = () => {
                             }
                         </div>
                     </div>
-                    {/* <div className="flex items-center justify-center">
-                        <a rel="noopener noreferrer" href="#" className="text-sm dark:text-gray-400">Maybe later</a>
-                    </div> */}
                 </div>
             </div>
+
+            {/* comment section ------------------------------------- */}
+
+            <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
+                <form noValidate="" action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+                    {
+                        allComments?.map(comment => <AllComments key={comment._id} comment={comment} />)
+                    }
+                </form>
+            </section>
+
         </div>
     );
 };
