@@ -12,6 +12,7 @@ const ServicesDetails = () => {
     const { user } = useContext(AuthContext);
     const data = useLoaderData();
     const service = data?.data;
+    const serviceId = service._id;
     // console.log(service);
     // console.log(service?.details[0]?.details1);
 
@@ -23,15 +24,22 @@ const ServicesDetails = () => {
 
 
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/service/}`)
-    //         .then(res => res.json())
-    //         .then(data => {
+    // read / show comment -----------
+    useEffect(() => {
+        fetch(`http://localhost:5000/service/${serviceId}/comment`)
+            .then(res => res.json())
+            .then(data => {
+                console.log('under fetch')
+                console.log(data);
+            })
+            .catch(error => console.log(error))
+    }, []);
 
-    //         })
-    //         .catch(error => console.log(error));
-    // }, []);
 
+
+
+
+    // comment add handler ----------------------------
     const handleComment = (event) => {
         if (!user) {
             // toast.info(`To comment or feedback login first pls.`)
@@ -41,19 +49,50 @@ const ServicesDetails = () => {
             setLoginShow(true);
             return;
         }
-        if (commentText?.length < 25) {
+        if (commentText?.length > 25) {
+            console.log(commentText)
+            const name = user?.displayName;
+            const email = user?.email;
+            const photoURL = user?.photoURL;
+            const serviceName = service?.name;
+            // console.log(name, email, photoURL, serviceId,serviceName)
+            const comment = {
+                serviceId,
+                serviceName,
+                commentText,
+                userInfl: [
+                    {
+                        name,
+                        email,
+                        photoURL,
+                    },
+                ],
+            };
+            // console.log(comment);
+
+            // comment add function--------------------
+            fetch(`http://localhost:5000/service/${serviceId}/comment`, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(comment),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('under fetch')
+                    console.log(data);
+                    toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
+                })
+                .catch(error => console.log(error))
+        } else {
+            // console.log(commentText)
             return toast.error('Comment Should be at Least 25 characters.')
-        }
+        };
+    };
 
-        console.log(commentText)
-        const name = user?.displayName;
-        const email = user?.email;
-        const photoURL = user?.photoURL;
-        const _id = service._id;
-        console.log(name, email, photoURL, _id)
 
-        toast.success(`Dear ${name} your finback will be listed bellow now. Thank you.`)
-    }
+
 
 
     return (
@@ -196,7 +235,7 @@ const ServicesDetails = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="flex flex-col w-full relative">
+                        <div className="flex flex-col w-full relative font-serif">
                             <textarea onChange={(event) => setCommentText(event.target.value)} name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
                             <button onClick={handleComment} type="button" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400 border bg-cyan-400 w-36 text-center m-auto" >Leave feedback</button>
                             {
