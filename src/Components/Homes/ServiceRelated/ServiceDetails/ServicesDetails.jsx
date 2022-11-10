@@ -23,7 +23,7 @@ const ServicesDetails = () => {
 
     const [allComments, setAllcomments] = useState([]);
     const [stateChange, setStateChange] = useState(true);
-    const [commentText, setCommentText] = useState({});
+    const [commentText, setCommentText] = useState(" ");
     const [loginShow, setLoginShow] = useState(false)
     // console.log(commentText?.length);
     const location = useLocation();
