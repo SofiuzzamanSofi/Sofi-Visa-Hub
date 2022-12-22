@@ -30,10 +30,10 @@ const ServicesDetails = () => {
 
 
 
-
+    console.log(serviceId);
     // read / show comment -----------
     useEffect(() => {
-        fetch(`http://localhost:5000/service/${serviceId}/comment`)
+        fetch(`http://localhost:5000//service/${serviceId}/comment`)
             .then(res => res.json())
             .then(data => {
                 setAllcomments(data.data);
@@ -76,7 +76,7 @@ const ServicesDetails = () => {
             // console.log(comment);
 
             // comment add function--------------------
-            fetch(`http://localhost:5000/service/${serviceId}/comment`, {
+            fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/service/${serviceId}/comment`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -98,10 +98,10 @@ const ServicesDetails = () => {
     };
 
 
-    console.log(serviceId)
+    // console.log(serviceId)
     // add services function-------------
     const addServices = () => {
-        fetch(`http://localhost:5000/addservice/${serviceId}`, {
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/addservice/${serviceId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -114,7 +114,6 @@ const ServicesDetails = () => {
                 setAllcomments("success add");
             })
             .catch(error => console.log(error))
-        console.log("add under ");
     }
 
 

@@ -24,7 +24,7 @@ const AllComments = ({ comment, children, setStateChange, stateChange }) => {
             return;
         }
         if (commentText?.length > 25) {
-            fetch(`http://localhost:5000/commentsbyuser/${comment?._id}`, {
+            fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/commentsbyuser/${comment?._id}`, {
                 method: "PUT",
                 headers: {
                     "content-type": "application/json",
@@ -51,7 +51,7 @@ const AllComments = ({ comment, children, setStateChange, stateChange }) => {
         if (!process) {
             return;
         }
-        fetch(`http://localhost:5000/commentsbyuser/${comment?._id}`, {
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/commentsbyuser/${comment?._id}`, {
             method: "DELETE",
         })
             .then(res => res.json())

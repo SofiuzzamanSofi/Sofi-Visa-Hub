@@ -17,7 +17,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services?pageNo=${pageNo}&perPageContentSize=${perPageContentSize}`)
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/services?pageNo=${pageNo}&perPageContentSize=${perPageContentSize}`)
             .then(res => res.json())
             .then(data => {
                 setPageCount(data.count);

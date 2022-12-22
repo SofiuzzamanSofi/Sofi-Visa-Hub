@@ -16,7 +16,7 @@ const MyReviews = () => {
 
     // read / show comment -----------
     useEffect(() => {
-        fetch(`http://localhost:5000/commentsbyuser/?email=${user?.email}`)
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/commentsbyuser/?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setAllcomments(data.data);

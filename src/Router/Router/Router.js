@@ -25,7 +25,7 @@ const router = createBrowserRouter([
             { path: "/myreviews", element: <PrivetRoute><MyReviews /></PrivetRoute> },
             { path: "/addservice", element: <PrivetRoute><AddService /></PrivetRoute> },
             { path: "/blogs", element: <Blogs /> },
-            { path: "/service/:id", element: <ServicesDetails />, loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`) },
+            { path: "/service/:id", element: <ServicesDetails />, loader: ({ params }) => fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/service/${params.id}`) },
         ]
     },
     { path: "/signin", element: <SignIn /> },
