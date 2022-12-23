@@ -2,18 +2,18 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='text-center  text-white py-8 '>
+        <div className='text-center py-8 '>
             <div className='my-8'>
-                <h1 className='lg:text-6xl md:text-5xl text-2xl text-yellow-400'>Some Question and ans for you.</h1>
+                <h1 className='lg:text-5xl md:text-4xl text-xl text-yellow-400'>Some Question and ans.</h1>
             </div>
-            <div className='my-4 py-4 bg-slate-700 rounded-lg font-serif'>
-                <h1 className='text-xl my-2 px-8 text-yellow-300'>Difference between SQL and NoSQL.</h1>
+            <div className='my-4 py-4 bg-zinc-100 rounded-lg font-serif'>
+                <h1 className='text-xl my-2 px-8 '>Difference between SQL and NoSQL.</h1>
                 <div className='text-left px-8'>
                     <div className='px-8 text-justify table-color rounded-lg'>
                         <p >
                             SQL is the programming language used to interface with relational databases. (Relational databases model data as records in rows and tables with logical links between them). NoSQL is a class of DBMs that are non-relational and generally do not use SQL.
                         </p>
-                        <p className='text-2xl'>Main Difference</p>
+                        <p className='text-xl'>Main Difference</p>
                         <li>Type –</li>
                         <li>Language –</li>
                         <li>Scalability –</li>
@@ -36,8 +36,8 @@ const Blogs = () => {
                     </div>
                 </div>
             </div>
-            <div className='my-4 py-4 bg-slate-700 rounded-lg font-serif'>
-                <h1 className='text-xl my-2 px-8 text-yellow-300'>What is JWT, and how does it work?</h1>
+            <div className='my-4 py-4 bg-zinc-100 rounded-lg font-serif'>
+                <h1 className='text-xl my-2 px-8 '>What is JWT, and how does it work?</h1>
                 <div className='text-left px-8'>
                     <div className='px-8 text-justify table-color rounded-lg'>
                         <p >
@@ -56,14 +56,14 @@ const Blogs = () => {
                     </div>
                 </div>
             </div>
-            <div className='my-4 py-4 bg-slate-700 rounded-lg font-serif'>
-                <h1 className='text-xl my-2 px-8 text-yellow-300'>What is the difference between javascript and NodeJS?</h1>
+            <div className='my-4 py-4 bg-zinc-100 rounded-lg font-serif'>
+                <h1 className='text-xl my-2 px-8 '>What is the difference between javascript and NodeJS?</h1>
                 <div className='text-left px-8'>
                     <div className='px-8 text-justify table-color rounded-lg'>
                         <p >
                             JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. Node.js, on the other hand, is an interpreter or execution environment for the JavaScript programming language.
                         </p>
-                        <p className='text-2xl py-2'>Main Difference:-</p>
+                        <p className='text-xl py-2'>Main Difference:-</p>
                         <ul>
                             <li>JavaScript is a client-side scripting language that is lightweight, cross-platform, and interpreted. Both Java and HTML include it. Node.js, on the other hand, is a V8-based server-side programming language.
                                 <br />
@@ -82,12 +82,12 @@ const Blogs = () => {
                     </div>
                 </div>
             </div>
-            <div className='my-4 py-4 bg-slate-700 rounded-lg font-serif'>
-                <h1 className='text-xl my-2 px-8 text-yellow-300'>How does NodeJS handle multiple requests at the same time?</h1>
+            <div className='my-4 py-4 bg-zinc-100 rounded-lg font-serif'>
+                <h1 className='text-xl my-2 px-8 '>How does Node.Js handle multiple requests at the same time?</h1>
                 <div className='text-left px-8'>
                     <div className='px-8 text-justify table-color rounded-lg'>
-                        <p className='py-2 text-2xl'>
-                            NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.
+                        <p className='py-2'>
+                            Node.Js receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.
                         </p>
 
                         <ul>

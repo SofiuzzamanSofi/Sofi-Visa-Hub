@@ -2,8 +2,8 @@ import React from 'react';
 
 const AppsPlayStore = () => {
     return (
-        <section className="py-6 dark:bg-gray-800 dark:text-gray-50">
-            <div className="container mx-auto flex flex-col justify-around p-4 text-center md:p-10 lg:flex-row">
+        <section className="px-4 py-16">
+            <div className="mx-auto flex flex-col justify-between text-center lg:flex-row">
                 <div className="flex flex-col justify-center lg:text-left">
                     <p className="mb-1 text-sm font-medium tracking-widest uppercase dark:text-violet-400">Hic eligendi necessitatibus quod quia</p>
                     <h1 className="py-2 text-3xl font-medium leading-tight title-font">Master Cleanse Reliac Heirloom</h1>

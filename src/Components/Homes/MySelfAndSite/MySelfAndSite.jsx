@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const MySelfAndSite = () => {
     return (
-        <section className="dark:bg-gray-800 dark:text-gray-100 bg-zinc-100">
-            <div className="container max-w-6xl py-6 mx-auto space-y-6 sm:space-y-12">
+        <section className="px-4 py-16 bg-zinc-100">
+            <div className="mx-auto space-y-6 sm:space-y-12">
                 <Link className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 dark:bg-gray-900">
                     <img src="https://source.unsplash.com/random/480x360" alt="" className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 dark:bg-gray-500 rounded-xl" />
                     <div className="p-6 space-y-2 lg:col-span-5 rounded-xl border">

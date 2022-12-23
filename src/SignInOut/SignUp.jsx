@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
@@ -19,7 +19,9 @@ const SignUp = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
-
+    useEffect(() => {
+        setError("");
+    }, [location?.pathname])
 
     // email or form controlled by react dom, password-type-text/password ---------
     const [showPassword, setShowPassword] = useState(true);
@@ -90,36 +92,36 @@ const SignUp = () => {
 
 
     return (
-        <div className="m-auto max-w-sm xl:mt-[8%]">
-            <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100 border-4 bg-sky-100">
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="w-full max-w-md px-8 py-4 space-y-3 rounded-xl border border-black">
                 <h1 className="text-2xl font-bold text-center">Register</h1>
-                <form onSubmit={handleSubmit} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={handleSubmit} noValidate="" action="" className="space-y-2 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block dark:text-gray-400">Full Name</label>
-                        <input type="text" name="name" placeholder="Full Name" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleNameChange} value={userInfo.name} />
+                        <input type="text" name="name" placeholder="Full Name" className="w-full px-2 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleNameChange} value={userInfo.name} />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block dark:text-gray-400">Photo URL</label>
-                        <input type="url" name="photo" placeholder="Photo Url" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" onChange={handlePhotoChange} value={userInfo.photo} />
+                        <input type="url" name="photo" placeholder="Photo Url" className="w-full px-2 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" onChange={handlePhotoChange} value={userInfo.photo} />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="username" className="block dark:text-gray-400">Email</label>
-                        <input type="email" name="email" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleEmailChange} value={userInfo.email} />
+                        <input type="email" name="email" placeholder="Email" className="w-full px-2 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleEmailChange} value={userInfo.email} />
                     </div>
                     <div className="space-y-1 text-sm relative">
                         <label htmlFor="password" className="block dark:text-gray-400">Password</label>
-                        <input type={showPassword ? "password" : "text"} name="password" placeholder="input password pls" className=" w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handlePasswordChange} value={userInfo.password} />
+                        <input type={showPassword ? "password" : "text"} name="password" placeholder="input password pls" className=" w-full px-2 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handlePasswordChange} value={userInfo.password} />
                         {showPassword ? <EyeIcon className='w-6 absolute top-8 right-2 cursor-pointer' onClick={() => setShowPassword(!showPassword)} /> : <EyeSlashIcon className='w-6 absolute top-8 right-2 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />}
                     </div>
                     <div className="space-y-1 text-sm relative">
                         <label htmlFor="password" className="block dark:text-gray-400">Retype Password</label>
-                        <input type={showPassword ? "password" : "text"} name="confirmPassword" placeholder="retype password" className=" w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleConfirmPasswordChange} value={userInfo.confirmPassword} />
+                        <input type={showPassword ? "password" : "text"} name="confirmPassword" placeholder="retype password" className=" w-full px-2 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" required onChange={handleConfirmPasswordChange} value={userInfo.confirmPassword} />
                         {showPassword ? <EyeIcon className='w-6 absolute top-8 right-2 cursor-pointer' onClick={() => setShowPassword(!showPassword)} /> : <EyeSlashIcon className='w-6 absolute top-8 right-2 cursor-pointer' onClick={() => setShowPassword(!showPassword)} />}
                         <div className="flex justify-between text-xs dark:text-gray-400">
                             <Link to=""><span className='text-xs text-red-600 '>{error ? error4 : " "}</span></Link>
                         </div>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign Up</button>
+                    <button className="block w-full p-3 text-center rounded-xl bg-[#ffec00]">Sign Up</button>
                 </form>
 
                 {/* Social icons ----------- */}

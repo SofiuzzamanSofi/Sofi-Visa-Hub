@@ -41,8 +41,8 @@ const Headers = () => {
 
 
     return (
-        <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-full md:px-24 lg:px-8 bg-slate-200">
-            <div className="relative flex items-center justify-between ">
+        <div className=" bg-zinc-100" >
+            <div className="relative flex items-center justify-between max-w-screen-2xl mx-auto text-xl md:text-2xl">
                 <div className='flex p-1'>
 
 
@@ -85,14 +85,14 @@ const Headers = () => {
                     {/* name and picture start ---------------- */}
                     <Link to="" title="Sofi-Visa-Hub" className="inline-flex items-center bg-slate-300 rounded-lg p-2">
                         <img className='w-12 md:w-16 rounded-sm' src={image} alt="" />
-                        <span className="ml-1 text-xl font-bold tracking-wide text-gray-800 uppercase">
+                        <span className="ml-1 font-bold tracking-wide text-gray-800 uppercase">
                             Sofi-Visa-Hub
                         </span>
                     </Link>
                     {/* name and picture end ---------------- */}
                 </div>
 
-                <ul className="flex items-center hidden space-x-8 lg:flex">
+                <ul className="items-center hidden space-x-8 lg:flex">
                     {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
                     {
                         user ?
@@ -109,9 +109,9 @@ const Headers = () => {
                 {/* Profile or log in ------------------- */}
                 <ul>
                     {user?.photoURL ?
-                        <Link onClick={() => setIsProfileOpen(!isProfileOpen)} title={user?.displayName ? user?.displayName : "No Name found, Update your name pls"} ><img className='w-10 h-10 rounded-full mt- mr-2 pt-2' src={user?.photoURL} alt="" /></Link>
+                        <Link onClick={() => setIsProfileOpen(!isProfileOpen)} title={user?.displayName ? user?.displayName : "No Name found, Update your name pls"} ><img className='w-12 rounded-full mt- mr-2 pt-2' src={user?.photoURL ? user?.photoURL : loginIcon} alt="" /></Link>
                         :
-                        <Link onClick={() => setIsProfileOpen(!isProfileOpen)} to="signin" title='Sign in Pls' ><img className='w-10 rounded-full mt- mr-2 pt-2' src={loginIcon} alt="" /></Link>}
+                        <Link onClick={() => setIsProfileOpen(!isProfileOpen)} to="signin" title='Sign in Pls' className='border border-black rounded-md px-4 py-2 hover:bg-[#ffec00]'><button>Sign In</button></Link>}
                 </ul>
                 {user && isProfileOpen && (
                     <div className="absolute top-14 right-0 z-50 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 border" >
