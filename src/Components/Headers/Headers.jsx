@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import image from "../../assets/sofi-visa-logo.png"
 import { Bars3Icon, XCircleIcon } from '@heroicons/react/24/solid'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
@@ -11,8 +11,8 @@ import toast, { Toaster } from 'react-hot-toast';
 const Headers = () => {
 
     const { user, setUser, logout } = useContext(AuthContext);
-
-
+    const location = useLocation();
+    console.log(location?.pathname);
 
     // small display slider and profile slider -----------
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,9 +36,11 @@ const Headers = () => {
 
     // header / navbar items ------------
     const menuItemsLi = [
-        "Home", "Services", "About Us", "Blogs"
+        "Home", "Services", "About Us", "Blogs", user && "My Reviews", user && "Add service"
     ];
 
+    user && <>
+    </>
 
 
     const hndleLogOut = () => {
@@ -81,22 +83,29 @@ const Headers = () => {
                             <div
                                 onClick={handleMenuMobile}
                                 // className="absolute top-14 left-0 z-40 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 border"
-                                className={`bg-[#f0ea97] hover:bg-[#ffec00] w-full h-full top-0 right-0 z-10 flex  items-center justify-center fixed ${isMenuOpen ? "translate-x-0" : "translate-x-full"} duration-300 transition-all`}
+                                className={`bg-[#f0ea97] hover:bg-[#f1e320] w-full h-full top-0 right-0 z-10 flex  items-center justify-center fixed ${isMenuOpen ? "translate-x-0" : "translate-x-full"} duration-300 transition-all`}
                             >
                                 {/* <nav className='p-5'> */}
                                 <button className='absolute top-10 left-10'                                >
                                     <XCircleIcon className='w-8' />
                                 </button>
                                 <ul className=" grid gap-5">
-                                    {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
-                                    {
+                                    {menuItemsLi?.map(mi => <NavLink
+                                        key={mi}
+                                        className={`hover:bg-[#ffec00] px-[15px] py-2 mx-[1px] ${("/" + mi?.replace(" ", "")?.toLowerCase() === location?.pathname) ? "bg-[#ffec00] rounder-lg" : ""}`}
+                                        to={`/${mi?.replace(" ", "")?.toLowerCase()}`}
+                                        title={mi}
+                                    >
+                                        <li>{mi}</li>
+                                    </NavLink>)}
+                                    {/* {
                                         user ?
                                             <>
                                                 <Link to="/myreviews" title='My Reviews'><li>My Reviews</li></Link>
                                                 <Link to="/addservice" title='Add service'><li>Add service</li></Link>
                                             </>
                                             : " "
-                                    }
+                                    } */}
                                 </ul>
                                 {/* </nav> */}
                             </div>
@@ -117,16 +126,23 @@ const Headers = () => {
                     {/* name and picture end ---------------- */}
                 </div>
 
-                <ul className="items-center hidden space-x-8 lg:flex">
-                    {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
-                    {
+                <ul className="items-center hidden lg:flex">
+                    {menuItemsLi?.map(mi => <NavLink
+                        key={mi}
+                        className={`hover:bg-[#ffec00] px-[15px] py-2 mx-[1px] ${("/" + mi?.replace(" ", "")?.toLowerCase() === location?.pathname) ? "bg-[#ffec00] rounder-lg" : ""}`}
+                        to={`/${mi?.replace(" ", "")?.toLowerCase()}`}
+                        title={mi}
+                    >
+                        <li>{mi}</li>
+                    </NavLink>)}
+                    {/* {
                         user ?
                             <>
                                 <Link to="/myreviews" title='My Reviews'>My Reviews</Link>
                                 <Link to="/addservice" title='Add service'>Add service</Link>
                             </>
                             : " "
-                    }
+                    } */}
                 </ul>
 
 
