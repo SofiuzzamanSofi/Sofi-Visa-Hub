@@ -52,7 +52,7 @@ const Services = () => {
                     </div>
                     <div className="text-center pt-4 ">
 
-                        <Link to="/services" className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800 hover:text-cyan-300">
+                        <Link to="/services" className="inline-flex items-center font-semibold transition-colors duration-200  hover:text-yellow-800 hover:font-extrabold">
                             See all articles
                             <svg
                                 className="inline-block w-3 ml-2"
