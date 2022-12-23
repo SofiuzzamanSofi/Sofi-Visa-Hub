@@ -24,6 +24,16 @@ const Headers = () => {
         setIsProfileOpen(false);
     });
 
+    const handleMenuMobile = () => {
+        setIsMenuOpen(!isMenuOpen);
+        setIsProfileOpen(false);
+    };
+    const handleProfile = () => {
+        setIsProfileOpen(!isProfileOpen);
+        setIsMenuOpen(false);
+    };
+
+
     // header / navbar items ------------
     const menuItemsLi = [
         "Home", "Services", "About Us", "Blogs"
@@ -54,36 +64,41 @@ const Headers = () => {
                     {/* lg hidden start --------------- */}
                     <div className="lg:hidden">
                         {isMenuOpen ?
-                            <button title="Open Menu" className="p-2 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50" onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            >
-                                <XCircleIcon className='w-8' />
-                            </button>
+                            // <button title="Open Menu" className="p-2 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50 z-50"
+                            //     onClick={handleMenuMobile}
+                            // >
+                            //     <XCircleIcon className='w-8' />
+                            // </button>
+                            ""
                             :
-                            <button title="Open Menu" className="p-2 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50" onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            <button title="Open Menu" className="p-2 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50"
+                                onClick={handleMenuMobile}
                             >
                                 <Bars3Icon className='w-8' />
                             </button>
                         }
                         {isMenuOpen && (
                             <div
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="absolute top-14 left-0 z-50 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 border"
+                                onClick={handleMenuMobile}
+                                // className="absolute top-14 left-0 z-40 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 border"
+                                className={`bg-[#f0ea97] hover:bg-[#ffec00] w-full h-full top-0 right-0 z-10 flex  items-center justify-center fixed ${isMenuOpen ? "translate-x-0" : "translate-x-full"} duration-300 transition-all`}
                             >
-                                <nav className='p-5'>
-                                    <ul className="">
-                                        {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
-                                        {
-                                            user ?
-                                                <>
-                                                    <Link to="/myreviews" title='My Reviews'><li>My Reviews</li></Link>
-                                                    <Link to="/addservice" title='Add service'><li>Add service</li></Link>
-                                                </>
-                                                : " "
-                                        }
-                                    </ul>
-                                </nav>
-
-
+                                {/* <nav className='p-5'> */}
+                                <button className='absolute top-10 left-10'                                >
+                                    <XCircleIcon className='w-8' />
+                                </button>
+                                <ul className=" grid gap-5">
+                                    {menuItemsLi.map(mi => <Link key={mi} to={`/${mi.replace(" ", "").toLowerCase()}`} title={mi}><li>{mi}</li></Link>)}
+                                    {
+                                        user ?
+                                            <>
+                                                <Link to="/myreviews" title='My Reviews'><li>My Reviews</li></Link>
+                                                <Link to="/addservice" title='Add service'><li>Add service</li></Link>
+                                            </>
+                                            : " "
+                                    }
+                                </ul>
+                                {/* </nav> */}
                             </div>
                         )}
                     </div>
@@ -120,14 +135,14 @@ const Headers = () => {
                 <ul>
                     {user?.photoURL ?
                         <Link
-                            onClick={() => setIsProfileOpen(!isProfileOpen)}
+                            onClick={handleProfile}
                             title={user?.displayName ? user?.displayName : "No Name found, Update your name pls"}
                         >
                             <img className='w-12 rounded-full mt- mr-2 pt-2' src={user?.photoURL ? user?.photoURL : loginIcon} alt="" />
                         </Link>
                         :
                         <Link
-                            onClick={() => setIsProfileOpen(!isProfileOpen)}
+                            onClick={handleProfile}
                             to="signin" title='Sign in Pls' className='border border-black rounded-md px-4 py-2 hover:bg-[#ffec00]'
                         >
                             <button>Sign In</button>
@@ -136,7 +151,7 @@ const Headers = () => {
                 {user && isProfileOpen && (
                     <div
                         className="absolute top-14 right-0 z-50 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 border"
-                        onClick={() => setIsProfileOpen(!isProfileOpen)}
+                        onClick={handleProfile}
                     >
                         <Link to="profile" className="py-3 px-4 block" title='see profile'>
                             <span className="block text-sm text-gray-900 dark:text-white" >{user?.displayName ? user?.displayName : "No Name found, Update your name pls"}</span>
