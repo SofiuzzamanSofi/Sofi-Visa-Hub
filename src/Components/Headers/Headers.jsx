@@ -12,7 +12,7 @@ const Headers = () => {
 
     const { user, setUser, logout } = useContext(AuthContext);
     const location = useLocation();
-    console.log(location?.pathname);
+    // console.log(location?.pathname);
 
     // small display slider and profile slider -----------
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,8 +39,6 @@ const Headers = () => {
         "Home", "Services", "About Us", "Blogs", user && "My Reviews", user && "Add service"
     ];
 
-    user && <>
-    </>
 
 
     const hndleLogOut = () => {
@@ -118,7 +116,7 @@ const Headers = () => {
 
                     {/* name and picture start ---------------- */}
                     <Link to="" title="Sofi-Visa-Hub" className="inline-flex items-center bg-slate-300 rounded-lg p-2">
-                        <img className='w-12 md:w-16 rounded-sm' src={image} alt="" />
+                        <img className='w-12  md:w-16 rounded-sm' src={image} alt="" />
                         <span className="ml-1 font-bold tracking-wide text-gray-800 uppercase">
                             Sofi-Visa-Hub
                         </span>
@@ -154,7 +152,7 @@ const Headers = () => {
                             onClick={handleProfile}
                             title={user?.displayName ? user?.displayName : "No Name found, Update your name pls"}
                         >
-                            <img className='w-12 rounded-full mt- mr-2 pt-2' src={user?.photoURL ? user?.photoURL : loginIcon} alt="" />
+                            <img className='w-12 h-12 rounded-full mt- mr-2 pt-2' src={user?.photoURL ? user?.photoURL : loginIcon} alt="" />
                         </Link>
                         :
                         <Link

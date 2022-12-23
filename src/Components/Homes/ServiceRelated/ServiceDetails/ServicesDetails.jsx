@@ -29,16 +29,19 @@ const ServicesDetails = () => {
     const location = useLocation();
 
 
-
+    console.log("unnon consolelog -- 1")
     console.log(serviceId);
     // read / show comment -----------
     useEffect(() => {
-        fetch(`http://localhost:5000//service/${serviceId}/comment`)
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/service/${serviceId}/comment`)
             .then(res => res.json())
             .then(data => {
-                setAllcomments(data.data);
+                setAllcomments(data?.data);
+                console.log("data under useEffect", data);
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
+        console.log("under the useEffect");
+
     }, [stateChange]);
 
 
