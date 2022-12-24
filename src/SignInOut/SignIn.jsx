@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid'
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import SignSocial from './SignSocial';
 import { useEffect } from 'react';
 
@@ -104,7 +104,6 @@ const SignIn = () => {
                     <Link to="/signup" className="underline dark:text-gray-100">Sign up</Link>
                 </p>
             </div>
-            <Toaster />
         </div>
     );
 };

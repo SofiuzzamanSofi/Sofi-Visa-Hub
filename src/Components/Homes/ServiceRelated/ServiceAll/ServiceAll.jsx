@@ -30,7 +30,7 @@ const ServiceAll = () => {
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="pb-10 border-t-4 border-b-4  border-b divide-y">
-                {services?.map(service => <Service key={service.no} service={service} />)}
+                {services?.map((service, i) => <Service key={i} service={service} />)}
             </div>
         </div>
     );

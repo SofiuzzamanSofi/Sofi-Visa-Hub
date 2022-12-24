@@ -37,16 +37,22 @@ const MyReviews = () => {
     return (
         <div>
             <p className='text-4xl text-center py-4'>You Have total :{allComments?.length ? allComments?.length : 0} Reviews.</p>
-            {
-                allComments?.map(comment => <AllComments key={comment._id} comment={comment} setStateChange={setStateChange} stateChange={stateChange} >
-
-                    {/* <>
-                        <button onClick={handlecommentchange} type="button" className="px-4 py-2 border rounded-md dark:border-gray-100 hover:bg-cyan-500"> Edit Review</button>
-                        <button onClick={handlecommentDelete} type="button" className="px-4 py-2 border rounded-md dark:border-gray-100 hover:bg-rose-500">Delet Review</button>
+            <div className='flex flex-col-reverse '>
+                {
+                    allComments?.map((comment, index) =>
+                        <AllComments
+                            key={index}
+                            comment={comment}
+                            setStateChange={setStateChange}
+                            stateChange={stateChange}
+                        >
+                            {/* <>
+                        <button onClick={handleCommentChange} type="button" className="px-4 py-2 border rounded-md dark:border-gray-100 hover:bg-cyan-500"> Edit Review</button>
+                        <button onClick={handleCommentDelete} type="button" className="px-4 py-2 border rounded-md dark:border-gray-100 hover:bg-rose-500">Delet Review</button>
                     </> */}
-                </AllComments>)
-            }
-
+                        </AllComments>)
+                }
+            </div>
         </div>
     );
 };

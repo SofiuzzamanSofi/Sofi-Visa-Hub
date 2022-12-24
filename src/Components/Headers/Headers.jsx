@@ -61,7 +61,7 @@ const Headers = () => {
                 <div className='flex p-1'>
 
 
-                    {/* lg hidden start --------------- */}
+                    {/* lg hidden start ---------------(mobile view) */}
                     <div className="lg:hidden">
                         {isMenuOpen ?
                             // <button title="Open Menu" className="p-2 transition duration-200 rounded focus:outline-none focus:shadow-outline hover:bg-deep-purple-50 focus:bg-deep-purple-50 z-50"
@@ -88,8 +88,8 @@ const Headers = () => {
                                     <XCircleIcon className='w-8' />
                                 </button>
                                 <ul className=" grid gap-5">
-                                    {menuItemsLi?.map(mi => <NavLink
-                                        key={mi}
+                                    {menuItemsLi?.map((mi, i) => <NavLink
+                                        key={i}
                                         className={`hover:bg-[#ffec00] px-[15px] py-2 mx-[1px] ${("/" + mi?.replace(" ", "")?.toLowerCase() === location?.pathname) ? "bg-[#ffec00] rounder-lg" : ""}`}
                                         to={`/${mi?.replace(" ", "")?.toLowerCase()}`}
                                         title={mi}
@@ -125,8 +125,8 @@ const Headers = () => {
                 </div>
 
                 <ul className="items-center hidden lg:flex">
-                    {menuItemsLi?.map(mi => <NavLink
-                        key={mi}
+                    {menuItemsLi?.map((mi, i) => <NavLink
+                        key={i}
                         className={`hover:bg-[#ffec00] px-[15px] py-2 mx-[1px] ${("/" + mi?.replace(" ", "")?.toLowerCase() === location?.pathname) ? "bg-[#ffec00] rounder-lg" : ""}`}
                         to={`/${mi?.replace(" ", "")?.toLowerCase()}`}
                         title={mi}

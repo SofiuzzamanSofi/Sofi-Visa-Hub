@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -64,7 +64,6 @@ const SignSocial = () => {
                     </svg>
                 </button>
             </div>
-            <Toaster />
         </>
     );
 };

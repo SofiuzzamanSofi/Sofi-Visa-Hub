@@ -1,7 +1,7 @@
 import Blogs from "../../Components/Blogs/Blogs";
 import AddService from "../../Components/ClientSections/AddService/AddService";
 import MyReviews from "../../Components/ClientSections/MyReviews/MyReviews";
-import ErrorRoute from "../../Components/ErrorRoute/ErrorRoute";
+import ErrorPage from "../../Components/ErrorPage/ErrorPage";
 import Home from "../../Components/Homes/Home/Home";
 import ServiceAll from "../../Components/Homes/ServiceRelated/ServiceAll/ServiceAll";
 import ServicesDetails from "../../Components/Homes/ServiceRelated/ServiceDetails/ServicesDetails";
@@ -18,7 +18,7 @@ const { createBrowserRouter } = require("react-router-dom");
 const router = createBrowserRouter([
     {
 
-        path: "/", element: <Main />, errorElement: <ErrorRoute />, children: [
+        path: "/", element: <Main />, errorElement: <ErrorPage />, children: [
             { path: "/", element: <Home /> },
             { path: "/home", element: <Home /> },
             { path: "/services", element: <ServiceAll /> },

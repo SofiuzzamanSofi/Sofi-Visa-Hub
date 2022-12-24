@@ -41,13 +41,13 @@ const Services = () => {
         <div className=''>
             <div className="px-4">
                 <div className="">
-                    {services?.map(service => <Service key={service.no} service={service} />)}
+                    {services?.map((service, i) => <Service key={i} service={service} />)}
                 </div>
                 <div className='border-y py-10'>
                     <div className="text-center">
                         <p className='py-2'>currently selected page: <span className='text-rose-600'>{pageNo + 1}</span></p>
                         {
-                            [...Array(pages)?.keys()]?.map(num => <button key={num} className={`border px-4 py-2 hover:text-yellow-300 hover:border-red-600 ${pageNo === num ? "text-yellow-300 border-red-600" : ""}`} onClick={() => setPageNo(num)}>{num + 1}</button>)
+                            [...Array(pages)?.keys()]?.map((num, i) => <button key={i} className={`border px-4 py-2 hover:text-yellow-300 hover:border-red-600 ${pageNo === num ? "text-yellow-300 border-red-600" : ""}`} onClick={() => setPageNo(num)}>{num + 1}</button>)
                         }
                     </div>
                     <div className="text-center pt-4 ">

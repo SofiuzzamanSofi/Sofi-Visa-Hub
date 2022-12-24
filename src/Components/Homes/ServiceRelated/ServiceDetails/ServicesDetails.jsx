@@ -3,7 +3,7 @@ import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import AllComments from '../../AllComments/AllComments';
 
 
@@ -23,24 +23,23 @@ const ServicesDetails = () => {
 
     const [allComments, setAllcomments] = useState([]);
     const [stateChange, setStateChange] = useState(true);
-    const [commentText, setCommentText] = useState(" ");
+    const [commentText, setCommentText] = useState("");
+    const [commentTextLoading, setCommentTextLoading] = useState(false);
     const [loginShow, setLoginShow] = useState(false)
     // console.log(commentText?.length);
     const location = useLocation();
 
 
-    console.log("unnon consolelog -- 1")
-    console.log(serviceId);
+
     // read / show comment -----------
     useEffect(() => {
-        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/service/${serviceId}/comment`)
+        fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/comment/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 setAllcomments(data?.data);
-                console.log("data under useEffect", data);
+                // console.log("data under useEffect", data);
             })
             .catch(error => console.log(error));
-        console.log("under the useEffect");
 
     }, [stateChange]);
 
@@ -59,6 +58,7 @@ const ServicesDetails = () => {
             return;
         }
         if (commentText?.length > 25) {
+            setCommentTextLoading(true);
             // console.log(commentText)
             const name = user?.displayName;
             const email = user?.email;
@@ -79,7 +79,7 @@ const ServicesDetails = () => {
             // console.log(comment);
 
             // comment add function--------------------
-            fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/service/${serviceId}/comment`, {
+            fetch(`https://sofi-visa-hub-server-sofiuzzamansofi.vercel.app/comment/${serviceId}/`, {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
@@ -91,9 +91,10 @@ const ServicesDetails = () => {
                     setStateChange(!stateChange)
                     // console.log(data);
                     toast.success(`Dear ${user?.displayName} your finback will be listed bellow now. Thank you.`)
-                    setCommentText(" ");
+                    setCommentText("");
                 })
                 .catch(error => console.log(error))
+                .finally(() => setCommentTextLoading(false));
         } else {
             // console.log(commentText)
             return toast.error('Comment Should be at Least 25 characters.')
@@ -218,7 +219,13 @@ const ServicesDetails = () => {
                         <p className="text-black font-serif pb-4">
                             Service Charge: <span className='text-rose-600'>$ {service?.ours[0]?.serviceCharge}</span>
                         </p>
-                        <button title='Add Services' onClick={addServices}><Link className='font-serif bg-[#fae807] hover:bg-[#ffec00] py-3 px-6 rounded-md'>Add Services</Link></button>
+                        {/* <button  */}
+                        <Link
+                            className='font-serif bg-[#fae807] hover:bg-[#ffec00] py-3 px-6 w-36 rounded-md flex justify-between'
+                            title='Add Services' onClick={addServices}
+                        >
+                            Add Services</Link>
+                        {/* </button> */}
 
                     </div>
                 </div>
@@ -228,6 +235,10 @@ const ServicesDetails = () => {
             <div>
                 <div className="flex flex-col max-w-xl p-8 shadow-sm rounded-xl lg:p-12 dark:bg-gray-900 dark:text-gray-100 text-center m-auto">
                     <div className="flex flex-col items-center w-full">
+
+
+                        {/* golden starts || ratings --- */}
+
                         <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
                         <div className="flex flex-col items-center py-6 space-y-3">
                             <span className="text-center">How was your experience?</span>
@@ -259,12 +270,33 @@ const ServicesDetails = () => {
                                 </button>
                             </div>
                         </div>
+
+
+
                         <div className="flex flex-col w-full relative font-serif">
-                            <textarea onChange={(event) => setCommentText(event.target.value)} value={commentText} name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
-                            <button onClick={handleComment} type="button" className="py-4 my-8 font-semibold rounded-md bg-[#fae807] hover:bg-[#ffec00] w-36 text-center m-auto" >Leave feedback</button>
+                            <textarea
+                                name='textArea' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"
+                                onChange={(event) => setCommentText(event.target.value)}
+                                value={commentText}
+                            >
+
+                            </textarea>
+
+                            <button
+                                onClick={handleComment} type="button" className="py-4 my-8 font-semibold rounded-md bg-[#fae807] hover:bg-[#ffec00] w-36 text-center m-auto"
+                            >
+                                {commentTextLoading ? "Loading..." : "Leave feedback"}
+                            </button>
                             {
                                 loginShow ?
-                                    <button><Link to="/signin" state={{ from: location }} replace className="z-40 w-36 py-4 my-8 font-semibold rounded-md border  text-center m-auto absolute top-[106px] left-[35%] bg-red-600 ">Sign In</Link></button>
+                                    <button>
+                                        <Link
+                                            to="/signin" state={{ from: location }} replace
+                                            className="z-40 w-36 py-4 my-8 font-semibold rounded-md border  text-center m-auto absolute top-[106px] left-[35%] bg-red-600 "
+                                        >
+                                            Sign In
+                                        </Link>
+                                    </button>
                                     :
                                     ""
                             }
@@ -276,13 +308,18 @@ const ServicesDetails = () => {
             {/* comment section ------------------------------------- */}
 
             <section className="p-6 dark:bg-gray-800 dark:text-gray-50">
-                <form noValidate="" action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
+                <form noValidate="" action="" className="container flex flex-col-reverse mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
                     {
-                        allComments?.map(comment => <AllComments key={comment._id} comment={comment} />)
+                        allComments?.map((comment, index) =>
+                            <AllComments
+                                key={index}
+                                comment={comment}
+                                setStateChange={setStateChange}
+                                stateChange={stateChange}
+                            />)
                     }
                 </form>
             </section>
-            <Toaster />
         </div>
     );
 };

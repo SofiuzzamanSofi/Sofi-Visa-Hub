@@ -39,12 +39,13 @@ const Service = ({ service }) => {
                 <p className="text-red-700 font-serif py-4 ">
                     Service Charge: <span className='text-cyan-900'>$ {service?.ours[0]?.serviceCharge}</span>
                 </p>
-                <button className="font-serif bg-[#fae807] hover:bg-[#ffec00] py-3 px-6 rounded-md">
-                    <Link to={`/service/${service._id}`} className='flex justify-between'>
-                        <p>view details</p>
-                        <ArrowRightIcon className='w-5' />
-                    </Link>
-                </button>
+                <Link
+                    to={`/service/${service._id}`}
+                    className="font-serif bg-[#fae807] hover:bg-[#ffec00] py-3 px-6 w-40 rounded-md flex justify-between"
+                >
+                    <p>view details</p>
+                    <ArrowRightIcon className='w-5' />
+                </Link>
             </div>
         </div>
     );
