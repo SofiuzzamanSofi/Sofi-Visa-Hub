@@ -10,7 +10,7 @@ const EditModal = ({ commentText, setCommentText, modalOpen, handleClosedModal, 
 
 
     return (
-        <section className='border border-red-600 fixed top-0 right-0 bottom-0 left-0 z-10  flex justify-center items-center'>
+        <section className='fixed top-0 right-0 bottom-0 left-0 z-10  flex justify-center items-center'>
             <div className='bg-slate-200 p-5 rounded-md relative'>
                 <button className='absolute top-2 right-2'                                >
                     <XCircleIcon className='w-8'
